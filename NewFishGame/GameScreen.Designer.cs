@@ -38,6 +38,7 @@
             plasticBin = new PictureBox();
             bioHazardsBin = new PictureBox();
             batteriesBin = new PictureBox();
+            scoreGameScreen = new Label();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)wasteBinsButtons).BeginInit();
             ((System.ComponentModel.ISupportInitialize)paperBin).BeginInit();
@@ -126,12 +127,24 @@
             batteriesBin.TabIndex = 5;
             batteriesBin.TabStop = false;
             // 
+            // scoreGameScreen
+            // 
+            scoreGameScreen.AutoSize = true;
+            scoreGameScreen.BackColor = Color.Transparent;
+            scoreGameScreen.Font = new Font("Cooper Black", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            scoreGameScreen.Location = new Point(919, 580);
+            scoreGameScreen.Name = "scoreGameScreen";
+            scoreGameScreen.Size = new Size(169, 42);
+            scoreGameScreen.TabIndex = 6;
+            scoreGameScreen.Text = "SCOR: 0";
+            // 
             // GameScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SkyBlue;
             ClientSize = new Size(1138, 631);
+            Controls.Add(scoreGameScreen);
             Controls.Add(batteriesBin);
             Controls.Add(bioHazardsBin);
             Controls.Add(plasticBin);
@@ -154,6 +167,7 @@
             ((System.ComponentModel.ISupportInitialize)bioHazardsBin).EndInit();
             ((System.ComponentModel.ISupportInitialize)batteriesBin).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -167,5 +181,6 @@
         private PictureBox plasticBin;
         private PictureBox bioHazardsBin;
         private PictureBox batteriesBin;
+        private Label scoreGameScreen;
     }
 }

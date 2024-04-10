@@ -23,8 +23,9 @@ namespace NewFishGame
         Random random = new Random();
         int xPos;
         int yPos;
-        bool goLeft, goRight, goUp, goDown, showBins;
+        bool goLeft, goRight, goUp, goDown, showBins, recycled, inBin;
         int playerScore;
+        int speed = 5;
 
         List<Waste> wasteList = new List<Waste>();
         Waste selectedWaste;
@@ -32,9 +33,9 @@ namespace NewFishGame
         int wasteNumber = -1;
         int lineAnimation = 0;
         int wasteOnScreen = 0;
+        string wasteType;
 
         List<string> imageLocation = new List<string>();
-
 
         public GameScreen()
         {
@@ -45,6 +46,8 @@ namespace NewFishGame
             plasticBin.Visible = false;
             bioHazardsBin.Visible = false;
             batteriesBin.Visible = false;
+            inBin = false;
+            recycled = false;
 
             SetUpApp();
 
@@ -56,13 +59,14 @@ namespace NewFishGame
             totalWaste = imageLocation.Count;
         }
 
-
         private void wasteFrquency(object sender, EventArgs e)
         {
             if (wasteOnScreen < 10 && showBins == false)
             {
                 MakeWaste();
             }
+
+            if (frequency.Interval % 10000 == 0) speed++;
         }
 
         private void MakeWaste()
@@ -82,10 +86,6 @@ namespace NewFishGame
             newWaste.rect.Y = newWaste.position.Y;
 
             wasteList.Add(newWaste);
-        }
-
-        public void RestartGame()
-        {
         }
 
         private void GameTimerEvent(object sender, EventArgs e)
@@ -114,13 +114,11 @@ namespace NewFishGame
                 {
                     if (waste.position.Y < this.ClientSize.Height - waste.height)
                     {
-                        
-                        waste.position.Y += 5;
+                        waste.position.Y += speed;
                         waste.rect.Y = waste.position.Y;
                     }
                 }
             }
-
         }
         private void TrashTimerEvent(object sender, EventArgs e)
         {
@@ -135,12 +133,9 @@ namespace NewFishGame
                 }
             }
 
-            if (selectedWaste != null)
+            if (selectedWaste != null && showBins == true)
             {
-                if (lineAnimation < 5)
-                {
-                    lineAnimation++;
-                }
+                lineAnimation = 5;
             }
 
             this.Invalidate();
@@ -217,18 +212,82 @@ namespace NewFishGame
         }
         private void GameMouseMove(object sender, MouseEventArgs e)
         {
-            if (showBins == true)
+            if (showBins == true && selectedWaste != null)
             {
-                if (selectedWaste != null)
-                {
-                    selectedWaste.position.X = e.X - (selectedWaste.width / 2);
-                    selectedWaste.position.Y = e.Y - (selectedWaste.height / 2);
-                }
+                selectedWaste.position.X = e.X - (selectedWaste.width / 2);
+                selectedWaste.position.Y = e.Y - (selectedWaste.height / 2);
             }
         }
 
         private void GameMouseUp(object sender, MouseEventArgs e)
         {
+            if (showBins == true && selectedWaste != null)
+            {
+                if (selectedWaste.wasteType.Equals("paper"))
+                {
+                    if (selectedWaste.rect.IntersectsWith(paperBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore++;
+                        wasteOnScreen--;
+                    }
+                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds) || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds) || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore--;
+                        wasteOnScreen--;
+                    }
+                }
+                if (selectedWaste.wasteType.Equals("plastic"))
+                {
+                    if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore++;
+                        wasteOnScreen--;
+                    }
+                    else if (selectedWaste.rect.IntersectsWith(paperBin.Bounds) || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds) || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore--;
+                        wasteOnScreen--;
+                    }
+
+                }
+                if (selectedWaste.wasteType.Equals("biohazard"))
+                {
+                    if (selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore++;
+                        wasteOnScreen--;
+                    }
+                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds) || selectedWaste.rect.IntersectsWith(paperBin.Bounds) || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore--;
+                        wasteOnScreen--;
+                    }
+                }
+                if (selectedWaste.wasteType.Equals("battery"))
+                {
+                    if (selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore++;
+                        wasteOnScreen--;
+                    }
+                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds) || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds) || selectedWaste.rect.IntersectsWith(paperBin.Bounds))
+                    {
+                        wasteList.Remove(selectedWaste);
+                        playerScore--;
+                        wasteOnScreen--;
+                    }
+                }
+
+                scoreGameScreen.Text = "SCOR: " + playerScore.ToString();
+            }
+
             foreach (Waste tempWaste in wasteList)
             {
                 tempWaste.active = false;
