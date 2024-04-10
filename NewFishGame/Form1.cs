@@ -11,6 +11,12 @@ namespace NewFishGame
         {
             GameScreen screen = new GameScreen();
             screen.Show();
+            this.Hide();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

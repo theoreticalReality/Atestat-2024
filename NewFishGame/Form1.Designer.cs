@@ -28,32 +28,87 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            startButton = new Button();
+            title = new Label();
+            creditsButton = new Button();
+            helpButton = new Button();
+            exitButton = new Button();
             SuspendLayout();
             // 
-            // button1
+            // startButton
             // 
-            button1.Location = new Point(484, 261);
-            button1.Name = "button1";
-            button1.Size = new Size(161, 86);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            startButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            startButton.Location = new Point(416, 278);
+            startButton.Name = "startButton";
+            startButton.Size = new Size(274, 61);
+            startButton.TabIndex = 0;
+            startButton.Text = "Start Game";
+            startButton.UseVisualStyleBackColor = true;
+            startButton.Click += button1_Click;
+            // 
+            // title
+            // 
+            title.AutoSize = true;
+            title.Font = new Font("Silkscreen", 72F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            title.Location = new Point(220, 46);
+            title.Name = "title";
+            title.Size = new Size(674, 120);
+            title.TabIndex = 1;
+            title.Text = "FISHGAME";
+            // 
+            // creditsButton
+            // 
+            creditsButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            creditsButton.Location = new Point(620, 449);
+            creditsButton.Name = "creditsButton";
+            creditsButton.Size = new Size(274, 61);
+            creditsButton.TabIndex = 2;
+            creditsButton.Text = "CREDITS";
+            creditsButton.UseVisualStyleBackColor = true;
+            // 
+            // helpButton
+            // 
+            helpButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            helpButton.Location = new Point(220, 449);
+            helpButton.Name = "helpButton";
+            helpButton.Size = new Size(274, 61);
+            helpButton.TabIndex = 3;
+            helpButton.Text = "HELP";
+            helpButton.UseVisualStyleBackColor = true;
+            // 
+            // exitButton
+            // 
+            exitButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            exitButton.Location = new Point(979, 540);
+            exitButton.Name = "exitButton";
+            exitButton.Size = new Size(134, 61);
+            exitButton.TabIndex = 4;
+            exitButton.Text = "EXIT";
+            exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1138, 631);
-            Controls.Add(button1);
+            Controls.Add(exitButton);
+            Controls.Add(helpButton);
+            Controls.Add(creditsButton);
+            Controls.Add(title);
+            Controls.Add(startButton);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Button startButton;
+        private Label title;
+        private Button creditsButton;
+        private Button helpButton;
+        private Button exitButton;
     }
 }

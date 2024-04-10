@@ -39,6 +39,7 @@
             bioHazardsBin = new PictureBox();
             batteriesBin = new PictureBox();
             scoreGameScreen = new Label();
+            speedIncrease = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)wasteBinsButtons).BeginInit();
             ((System.ComponentModel.ISupportInitialize)paperBin).BeginInit();
@@ -131,12 +132,18 @@
             // 
             scoreGameScreen.AutoSize = true;
             scoreGameScreen.BackColor = Color.Transparent;
-            scoreGameScreen.Font = new Font("Cooper Black", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            scoreGameScreen.Location = new Point(919, 580);
+            scoreGameScreen.Font = new Font("Silkscreen", 27.7499962F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            scoreGameScreen.Location = new Point(886, 580);
             scoreGameScreen.Name = "scoreGameScreen";
-            scoreGameScreen.Size = new Size(169, 42);
+            scoreGameScreen.Size = new Size(227, 46);
             scoreGameScreen.TabIndex = 6;
-            scoreGameScreen.Text = "SCOR: 0";
+            scoreGameScreen.Text = "SCORE:0";
+            // 
+            // speedIncrease
+            // 
+            speedIncrease.Enabled = true;
+            speedIncrease.Interval = 10000;
+            speedIncrease.Tick += speedIncreaseTimer;
             // 
             // GameScreen
             // 
@@ -151,6 +158,7 @@
             Controls.Add(paperBin);
             Controls.Add(wasteBinsButtons);
             Controls.Add(player);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "GameScreen";
             Text = "GameScreen";
             Load += GameScreen_Load;
@@ -182,5 +190,6 @@
         private PictureBox bioHazardsBin;
         private PictureBox batteriesBin;
         private Label scoreGameScreen;
+        private System.Windows.Forms.Timer speedIncrease;
     }
 }

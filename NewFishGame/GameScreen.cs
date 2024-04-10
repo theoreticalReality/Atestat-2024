@@ -17,7 +17,7 @@ namespace NewFishGame
     {
         private void GameScreen_Load(object sender, EventArgs e)
         {
-
+                    
         }
 
         Random random = new Random();
@@ -65,8 +65,11 @@ namespace NewFishGame
             {
                 MakeWaste();
             }
+        }
 
-            if (frequency.Interval % 10000 == 0) speed++;
+        private void speedIncreaseTimer(object sender, EventArgs e)
+        {
+            speed++;
         }
 
         private void MakeWaste()
@@ -76,8 +79,9 @@ namespace NewFishGame
 
             Waste newWaste = new Waste(imageLocation[wasteNumber], 75, 100);
 
-            xPos = random.Next(10, this.ClientSize.Width - newWaste.width);
-            yPos = random.Next(0 + newWaste.height, this.ClientSize.Height/4);
+            //xPos = random.Next(10, this.ClientSize.Width - newWaste.width);
+            xPos = player.Location.X;
+            yPos = random.Next(0 + newWaste.height, this.ClientSize.Height / 5);
 
             newWaste.position.X = xPos;
             newWaste.position.Y = yPos;
@@ -285,7 +289,7 @@ namespace NewFishGame
                     }
                 }
 
-                scoreGameScreen.Text = "SCOR: " + playerScore.ToString();
+                scoreGameScreen.Text = "SCORE:" + playerScore.ToString();
             }
 
             foreach (Waste tempWaste in wasteList)
@@ -304,13 +308,10 @@ namespace NewFishGame
             {
                 foreach (Waste newWaste in wasteList)
                 {
-                    if (selectedWaste == null)
+                    if (selectedWaste == null && newWaste.rect.Contains(mousePosition))
                     {
-                        if (newWaste.rect.Contains(mousePosition))
-                        {
-                            selectedWaste = newWaste;
-                            newWaste.active = true;
-                        }
+                        selectedWaste = newWaste;
+                        newWaste.active = true;
                     }
 
                 }
@@ -327,6 +328,7 @@ namespace NewFishGame
                 plasticBin.Visible = false;
                 bioHazardsBin.Visible = false;
                 batteriesBin.Visible = false;
+                speedIncrease.Start();
             }
             else
             {
@@ -336,6 +338,7 @@ namespace NewFishGame
                 plasticBin.Visible = true;
                 bioHazardsBin.Visible = true;
                 batteriesBin.Visible = true;
+                speedIncrease.Stop();
             }
         }
 
@@ -351,6 +354,9 @@ namespace NewFishGame
 
             MessageBox.Show("Game OVER!!!");
             this.Close();
+
+            Form1 form1 = new Form1();
+            form1.Show();
         }
     }
 }

@@ -24,7 +24,6 @@ namespace NewFishGame
             this.width = imageWidth;
             this.height = imageHeight;
 
-
             if (imageLocation.Contains("paper")) wasteType = "paper";
             if (imageLocation.Contains("plastic")) wasteType = "plastic";
             if (imageLocation.Contains("biohazard")) wasteType = "biohazard";
