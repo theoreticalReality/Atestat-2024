@@ -31,10 +31,5 @@ namespace NewFishGame
 
             rect = new Rectangle(position.X, position.Y, width, height);
         }
-
-        public void Delete()
-        {
-            wastePic.Dispose();
-        }
     }
 }

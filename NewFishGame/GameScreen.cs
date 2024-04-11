@@ -70,6 +70,7 @@ namespace NewFishGame
         private void speedIncreaseTimer(object sender, EventArgs e)
         {
             speed++;
+            frequency.Interval += 10;
         }
 
         private void MakeWaste()
