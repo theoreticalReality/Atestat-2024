@@ -63,9 +63,9 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap baterii {
+        internal static System.Drawing.Bitmap background_game {
             get {
-                object obj = ResourceManager.GetObject("baterii", resourceCulture);
+                object obj = ResourceManager.GetObject("background-game", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,29 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fish {
+        internal static System.Drawing.Bitmap background_game1 {
             get {
-                object obj = ResourceManager.GetObject("fish", resourceCulture);
+                object obj = ResourceManager.GetObject("background-game1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap batteriesBin {
+            get {
+                object obj = ResourceManager.GetObject("batteriesBin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bioHazardsBin {
+            get {
+                object obj = ResourceManager.GetObject("bioHazardsBin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,6 +113,16 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fish_dead_flipped {
+            get {
+                object obj = ResourceManager.GetObject("fish_dead_flipped", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fish_flipped {
             get {
                 object obj = ResourceManager.GetObject("fish_flipped", resourceCulture);
@@ -103,9 +133,9 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hartie {
+        internal static System.Drawing.Bitmap fish_normal {
             get {
-                object obj = ResourceManager.GetObject("hartie", resourceCulture);
+                object obj = ResourceManager.GetObject("fish_normal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +143,9 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hazarde_biologie {
+        internal static System.Drawing.Bitmap paperBin {
             get {
-                object obj = ResourceManager.GetObject("hazarde-biologie", resourceCulture);
+                object obj = ResourceManager.GetObject("paperBin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +153,9 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap plastic {
+        internal static System.Drawing.Bitmap pixil_frame_0__2_ {
             get {
-                object obj = ResourceManager.GetObject("plastic", resourceCulture);
+                object obj = ResourceManager.GetObject("pixil-frame-0 (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +163,29 @@ namespace NewFishGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap unnamed {
+        internal static System.Drawing.Bitmap pixil_frame_0__3_ {
             get {
-                object obj = ResourceManager.GetObject("unnamed", resourceCulture);
+                object obj = ResourceManager.GetObject("pixil-frame-0 (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pixil_frame_0__4_ {
+            get {
+                object obj = ResourceManager.GetObject("pixil-frame-0 (4)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plasticBin {
+            get {
+                object obj = ResourceManager.GetObject("plasticBin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -38,7 +38,7 @@
             // startButton
             // 
             startButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            startButton.Location = new Point(416, 278);
+            startButton.Location = new Point(429, 331);
             startButton.Name = "startButton";
             startButton.Size = new Size(274, 61);
             startButton.TabIndex = 0;
@@ -50,31 +50,33 @@
             // 
             title.AutoSize = true;
             title.Font = new Font("Silkscreen", 72F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            title.Location = new Point(220, 46);
+            title.Location = new Point(149, 49);
             title.Name = "title";
-            title.Size = new Size(674, 120);
+            title.Size = new Size(818, 240);
             title.TabIndex = 1;
-            title.Text = "FISHGAME";
+            title.Text = "Saving The\r\n    Ocean";
             // 
             // creditsButton
             // 
             creditsButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            creditsButton.Location = new Point(620, 449);
+            creditsButton.Location = new Point(643, 455);
             creditsButton.Name = "creditsButton";
             creditsButton.Size = new Size(274, 61);
             creditsButton.TabIndex = 2;
             creditsButton.Text = "CREDITS";
             creditsButton.UseVisualStyleBackColor = true;
+            creditsButton.Click += creditsButton_Click;
             // 
             // helpButton
             // 
             helpButton.Font = new Font("Silkscreen", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            helpButton.Location = new Point(220, 449);
+            helpButton.Location = new Point(223, 455);
             helpButton.Name = "helpButton";
             helpButton.Size = new Size(274, 61);
             helpButton.TabIndex = 3;
             helpButton.Text = "HELP";
             helpButton.UseVisualStyleBackColor = true;
+            helpButton.Click += helpButton_Click;
             // 
             // exitButton
             // 

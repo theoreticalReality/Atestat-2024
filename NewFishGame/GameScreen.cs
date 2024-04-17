@@ -17,13 +17,13 @@ namespace NewFishGame
     {
         private void GameScreen_Load(object sender, EventArgs e)
         {
-                    
+
         }
 
         Random random = new Random();
         int xPos;
         int yPos;
-        bool goLeft, goRight, goUp, goDown, showBins, recycled, inBin;
+        bool goLeft, goRight, goUp, goDown, showBins, flipped;
         int playerScore;
         int speed = 5;
 
@@ -41,13 +41,13 @@ namespace NewFishGame
         {
             InitializeComponent();
 
+            DoubleBuffered = true;
             showBins = false;
             paperBin.Visible = false;
             plasticBin.Visible = false;
             bioHazardsBin.Visible = false;
             batteriesBin.Visible = false;
-            inBin = false;
-            recycled = false;
+            flipped = false;
 
             SetUpApp();
 
@@ -55,13 +55,13 @@ namespace NewFishGame
 
         private void SetUpApp()
         {
-            imageLocation = Directory.GetFiles("Waste", "*.jpeg").ToList();
+            imageLocation = Directory.GetFiles("Waste", "*.png").ToList();
             totalWaste = imageLocation.Count;
         }
 
         private void wasteFrquency(object sender, EventArgs e)
         {
-            if (wasteOnScreen < 10 && showBins == false)
+            if (showBins == false)
             {
                 MakeWaste();
             }
@@ -70,7 +70,7 @@ namespace NewFishGame
         private void speedIncreaseTimer(object sender, EventArgs e)
         {
             speed++;
-            frequency.Interval += 10;
+            frequency.Interval -= 10;
         }
 
         private void MakeWaste()
@@ -78,10 +78,10 @@ namespace NewFishGame
             wasteNumber = random.Next(0, totalWaste);
             wasteOnScreen++;
 
-            Waste newWaste = new Waste(imageLocation[wasteNumber], 75, 100);
+            Waste newWaste = new Waste(imageLocation[wasteNumber]);
 
             //xPos = random.Next(10, this.ClientSize.Width - newWaste.width);
-            xPos = player.Location.X;
+            xPos = random.Next(player.Location.X - 200, player.Location.X + 200);
             yPos = random.Next(0 + newWaste.height, this.ClientSize.Height / 5);
 
             newWaste.position.X = xPos;
@@ -117,7 +117,7 @@ namespace NewFishGame
             {
                 foreach (Waste waste in wasteList)
                 {
-                    if (waste.position.Y < this.ClientSize.Height - waste.height)
+                    if (waste.position.Y < this.ClientSize.Height - waste.height && IsStuck(waste) == false)
                     {
                         waste.position.Y += speed;
                         waste.rect.Y = waste.position.Y;
@@ -153,12 +153,14 @@ namespace NewFishGame
                 if (e.KeyCode == Keys.Left)
                 {
                     goLeft = true;
-                    player.Image = Properties.Resources.fish;
+                    player.Image = Properties.Resources.fish_flipped;
+                    flipped = true;
                 }
                 if (e.KeyCode == Keys.Right)
                 {
                     goRight = true;
-                    player.Image = Properties.Resources.fish_flipped;
+                    player.Image = Properties.Resources.fish_normal;
+                    flipped = false;
                 }
                 if (e.KeyCode == Keys.Up)
                 {
@@ -236,7 +238,9 @@ namespace NewFishGame
                         playerScore++;
                         wasteOnScreen--;
                     }
-                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds) || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds) || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
                     {
                         wasteList.Remove(selectedWaste);
                         playerScore--;
@@ -251,7 +255,9 @@ namespace NewFishGame
                         playerScore++;
                         wasteOnScreen--;
                     }
-                    else if (selectedWaste.rect.IntersectsWith(paperBin.Bounds) || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds) || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    else if (selectedWaste.rect.IntersectsWith(paperBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
                     {
                         wasteList.Remove(selectedWaste);
                         playerScore--;
@@ -267,7 +273,9 @@ namespace NewFishGame
                         playerScore++;
                         wasteOnScreen--;
                     }
-                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds) || selectedWaste.rect.IntersectsWith(paperBin.Bounds) || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
+                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(paperBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(batteriesBin.Bounds))
                     {
                         wasteList.Remove(selectedWaste);
                         playerScore--;
@@ -282,7 +290,9 @@ namespace NewFishGame
                         playerScore++;
                         wasteOnScreen--;
                     }
-                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds) || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds) || selectedWaste.rect.IntersectsWith(paperBin.Bounds))
+                    else if (selectedWaste.rect.IntersectsWith(plasticBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(bioHazardsBin.Bounds)
+                        || selectedWaste.rect.IntersectsWith(paperBin.Bounds))
                     {
                         wasteList.Remove(selectedWaste);
                         playerScore--;
@@ -343,21 +353,39 @@ namespace NewFishGame
             }
         }
 
+        private bool IsStuck(Waste currWaste)
+        {
+            foreach (Waste waste in wasteList)
+            {
+                if (currWaste != waste && currWaste.rect.IntersectsWith(waste.rect))
+                    return true;
+            }
+            return false;
+        }
+
         private void EndGame()
         {
             playerTimer.Stop();
             trashTimer.Stop();
             frequency.Stop();
 
-            playerScore = 0;
+            if (flipped == false)
+                player.Image = Properties.Resources.fish_dead;
+            else
+                player.Image = Properties.Resources.fish_dead_flipped;
 
-            player.Image = Properties.Resources.fish_dead;
-
-            MessageBox.Show("Game OVER!!!");
+            MessageBox.Show("Game Over!" + "\nYour score is: " + playerScore);
             this.Close();
+
+            playerScore = 0;
 
             Form1 form1 = new Form1();
             form1.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

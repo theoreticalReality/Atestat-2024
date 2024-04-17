@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             player = new PictureBox();
             playerTimer = new System.Windows.Forms.Timer(components);
             trashTimer = new System.Windows.Forms.Timer(components);
@@ -51,10 +52,10 @@
             // player
             // 
             player.BackColor = Color.Transparent;
-            player.Image = Properties.Resources.fish;
-            player.Location = new Point(687, 504);
+            player.Image = (Image)resources.GetObject("player.Image");
+            player.Location = new Point(528, 749);
             player.Name = "player";
-            player.Size = new Size(109, 67);
+            player.Size = new Size(109, 82);
             player.SizeMode = PictureBoxSizeMode.StretchImage;
             player.TabIndex = 0;
             player.TabStop = false;
@@ -79,7 +80,8 @@
             // 
             // wasteBinsButtons
             // 
-            wasteBinsButtons.Image = Properties.Resources.unnamed;
+            wasteBinsButtons.BackColor = Color.Transparent;
+            wasteBinsButtons.Image = (Image)resources.GetObject("wasteBinsButtons.Image");
             wasteBinsButtons.Location = new Point(23, 25);
             wasteBinsButtons.Name = "wasteBinsButtons";
             wasteBinsButtons.Size = new Size(91, 85);
@@ -90,40 +92,44 @@
             // 
             // paperBin
             // 
-            paperBin.Image = Properties.Resources.hartie;
-            paperBin.Location = new Point(177, -1);
+            paperBin.BackColor = Color.Transparent;
+            paperBin.Image = (Image)resources.GetObject("paperBin.Image");
+            paperBin.Location = new Point(150, -1);
             paperBin.Name = "paperBin";
-            paperBin.Size = new Size(196, 235);
+            paperBin.Size = new Size(204, 213);
             paperBin.SizeMode = PictureBoxSizeMode.StretchImage;
             paperBin.TabIndex = 2;
             paperBin.TabStop = false;
             // 
             // plasticBin
             // 
-            plasticBin.Image = Properties.Resources.plastic;
-            plasticBin.Location = new Point(425, -1);
+            plasticBin.BackColor = Color.Transparent;
+            plasticBin.Image = (Image)resources.GetObject("plasticBin.Image");
+            plasticBin.Location = new Point(360, -1);
             plasticBin.Name = "plasticBin";
-            plasticBin.Size = new Size(196, 235);
+            plasticBin.Size = new Size(204, 213);
             plasticBin.SizeMode = PictureBoxSizeMode.StretchImage;
             plasticBin.TabIndex = 3;
             plasticBin.TabStop = false;
             // 
             // bioHazardsBin
             // 
-            bioHazardsBin.Image = Properties.Resources.hazarde_biologie;
-            bioHazardsBin.Location = new Point(680, -1);
+            bioHazardsBin.BackColor = Color.Transparent;
+            bioHazardsBin.Image = (Image)resources.GetObject("bioHazardsBin.Image");
+            bioHazardsBin.Location = new Point(570, -1);
             bioHazardsBin.Name = "bioHazardsBin";
-            bioHazardsBin.Size = new Size(196, 235);
+            bioHazardsBin.Size = new Size(204, 213);
             bioHazardsBin.SizeMode = PictureBoxSizeMode.StretchImage;
             bioHazardsBin.TabIndex = 4;
             bioHazardsBin.TabStop = false;
             // 
             // batteriesBin
             // 
-            batteriesBin.Image = Properties.Resources.baterii;
-            batteriesBin.Location = new Point(919, -1);
+            batteriesBin.BackColor = Color.Transparent;
+            batteriesBin.Image = (Image)resources.GetObject("batteriesBin.Image");
+            batteriesBin.Location = new Point(780, -1);
             batteriesBin.Name = "batteriesBin";
-            batteriesBin.Size = new Size(196, 235);
+            batteriesBin.Size = new Size(204, 213);
             batteriesBin.SizeMode = PictureBoxSizeMode.StretchImage;
             batteriesBin.TabIndex = 5;
             batteriesBin.TabStop = false;
@@ -132,10 +138,11 @@
             // 
             scoreGameScreen.AutoSize = true;
             scoreGameScreen.BackColor = Color.Transparent;
-            scoreGameScreen.Font = new Font("Silkscreen", 27.7499962F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            scoreGameScreen.Location = new Point(886, 580);
+            scoreGameScreen.Font = new Font("Silkscreen", 20.2499962F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            scoreGameScreen.ForeColor = Color.Black;
+            scoreGameScreen.Location = new Point(2, 122);
             scoreGameScreen.Name = "scoreGameScreen";
-            scoreGameScreen.Size = new Size(227, 46);
+            scoreGameScreen.Size = new Size(142, 34);
             scoreGameScreen.TabIndex = 6;
             scoreGameScreen.Text = "SCORE:0";
             // 
@@ -150,7 +157,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SkyBlue;
-            ClientSize = new Size(1138, 631);
+            ClientSize = new Size(984, 961);
             Controls.Add(scoreGameScreen);
             Controls.Add(batteriesBin);
             Controls.Add(bioHazardsBin);
@@ -159,6 +166,7 @@
             Controls.Add(wasteBinsButtons);
             Controls.Add(player);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MinimizeBox = false;
             Name = "GameScreen";
             Text = "GameScreen";
             Load += GameScreen_Load;

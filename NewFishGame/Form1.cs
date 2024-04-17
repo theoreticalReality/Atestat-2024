@@ -18,5 +18,19 @@ namespace NewFishGame
         {
             Application.Exit();
         }
+
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+            HelpScreen screen = new HelpScreen();
+            screen.Show();
+            this.Hide();
+        }
+
+        private void creditsButton_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+            this.Hide();
+        }
     }
 }
